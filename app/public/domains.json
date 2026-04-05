@@ -1,0 +1,14 @@
+[
+  { "name": "txte.com", "price": 5000, "logo": "images/logos/txte-com.png", "category": "tech", "description": "Short, punchy 4-letter .com" },
+  { "name": "voicemix.com", "price": 4500, "logo": "images/logos/voicemix-com.png", "category": "tech", "description": "Audio & voice technology" },
+  { "name": "nukeware.com", "price": 3000, "logo": "images/logos/nukeware-com.png", "category": "tech", "description": "Explosive software brand" },
+  { "name": "solobro.com", "price": 3500, "logo": "images/logos/solobro-com.png", "category": "lifestyle", "description": "For the independent man" },
+  { "name": "freetub.com", "price": 4000, "logo": "images/logos/freetub-com.png", "category": "lifestyle", "description": "Streaming & media vibes" },
+  { "name": "likevps.com", "price": 2500, "logo": "images/logos/likevps-com.png", "category": "tech", "description": "VPS & hosting brand" },
+  { "name": "playerfocus.com", "price": 2500, "logo": "images/logos/playerfocus-com.png", "category": "gaming", "description": "Gaming analytics & esports" },
+  { "name": "rutrt.com", "price": 2000, "logo": "images/logos/rutrt-com.png", "category": "tech", "description": "5-letter brandable .com" },
+  { "name": "digact.com", "price": 1500, "logo": "images/logos/digact-com.png", "category": "tech", "description": "Digital action platform" },
+  { "name": "ocheat.com", "price": 1800, "logo": "images/logos/ocheat-com.png", "category": "gaming", "description": "Gaming tools & guides" },
+  { "name": "toongoon.com", "price": 1200, "logo": "images/logos/toongoon-com.png", "category": "entertainment", "description": "Animation & cartoon brand" },
+  { "name": "clawvps.com", "price": 1500, "logo": "images/logos/clawvps-com.png", "category": "tech", "description": "Aggressive hosting brand" }
+]

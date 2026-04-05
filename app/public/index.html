@@ -1,0 +1,2290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AssBoy.com - The Hangout Spot!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Fredoka+One&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --slime: #7BC74D;
+            --nick-orange: #FF6F00;
+            --splat-purple: #9B30FF;
+            --hot-pink: #FF3CAC;
+            --sky-blue: #00D4FF;
+            --sunny: #FFD700;
+            --dark-bg: #1a0533;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark-bg);
+            color: #fff;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">🍑</text></svg>') 16 16, auto;
+        }
+
+        /* SLIME DRIP HEADER */
+        .slime-header {
+            background: var(--slime);
+            padding: 20px 0 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .slime-header nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 10px 20px 25px;
+            flex-wrap: wrap;
+        }
+
+        .slime-header nav a {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.2rem;
+            color: var(--dark-bg);
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.3);
+            transition: all 0.2s;
+        }
+
+        .slime-header nav a:hover {
+            background: var(--nick-orange);
+            color: #fff;
+            transform: scale(1.1) rotate(-2deg);
+        }
+
+        .slime-drip {
+            display: block;
+            width: 100%;
+            height: 60px;
+            position: relative;
+            margin-top: -1px;
+        }
+
+        .slime-drip svg {
+            width: 100%;
+            height: 60px;
+            display: block;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 80px;
+            position: relative;
+            background: radial-gradient(ellipse at center, #2d1155 0%, var(--dark-bg) 70%);
+        }
+
+        .hero-title {
+            font-family: 'Bungee Shade', cursive;
+            font-size: clamp(3rem, 10vw, 7rem);
+            color: var(--nick-orange);
+            text-shadow: 4px 4px 0 var(--splat-purple), 8px 8px 0 rgba(0,0,0,0.3);
+            line-height: 1;
+            margin-bottom: 10px;
+            animation: wobble 3s ease-in-out infinite;
+        }
+
+        .hero-subtitle {
+            font-family: 'Fredoka One', cursive;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--slime);
+            margin-bottom: 40px;
+        }
+
+        .hero-character {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-character img {
+            width: 280px;
+            max-width: 70vw;
+            filter: drop-shadow(0 0 30px rgba(123, 199, 77, 0.5));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-badge {
+            position: absolute;
+            top: -10px;
+            right: -30px;
+            background: var(--hot-pink);
+            color: #fff;
+            font-family: 'Bungee', cursive;
+            font-size: 0.9rem;
+            padding: 12px 16px;
+            border-radius: 50%;
+            transform: rotate(15deg);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 60px 20px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Bungee', cursive;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title.orange { color: var(--nick-orange); }
+        .section-title.green { color: var(--slime); }
+        .section-title.purple { color: var(--splat-purple); }
+        .section-title.pink { color: var(--hot-pink); }
+
+        .section-title .splat {
+            position: absolute;
+            font-size: 0.5em;
+            top: -20px;
+            right: 10%;
+            transform: rotate(12deg);
+            opacity: 0.6;
+        }
+
+        /* GAMES GRID */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .game-card {
+            background: linear-gradient(135deg, #2d1155, #1a0533);
+            border: 3px solid var(--splat-purple);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(155, 48, 255, 0.1));
+            pointer-events: none;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px) rotate(-1deg);
+            border-color: var(--nick-orange);
+            box-shadow: 0 15px 40px rgba(255, 111, 0, 0.3);
+        }
+
+        .game-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .game-card h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.5rem;
+            color: var(--sunny);
+            margin-bottom: 10px;
+        }
+
+        .game-card p {
+            color: #b8a0d0;
+            font-size: 0.95rem;
+        }
+
+        .game-card .play-btn {
+            display: inline-block;
+            margin-top: 15px;
+            background: var(--slime);
+            color: var(--dark-bg);
+            font-family: 'Bungee', cursive;
+            padding: 10px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .game-card .play-btn:hover {
+            background: var(--nick-orange);
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        /* DOMAINS FOR SALE */
+        .domains-section {
+            background: linear-gradient(180deg, transparent, rgba(123, 199, 77, 0.05), transparent);
+        }
+
+        .domains-filter {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            font-family: 'Fredoka One', cursive;
+            font-size: 0.9rem;
+            padding: 8px 22px;
+            border-radius: 25px;
+            border: 2px solid var(--splat-purple);
+            background: transparent;
+            color: #b8a0d0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--splat-purple);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .domains-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .domain-card {
+            background: linear-gradient(145deg, #12052a, #1e0a3e);
+            border: 2px solid rgba(155, 48, 255, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.35s;
+            position: relative;
+        }
+
+        .domain-card:hover {
+            border-color: var(--slime);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(123, 199, 77, 0.2);
+        }
+
+        .domain-card-logo {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #0d0320, #1a0840);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .domain-card-logo img {
+            max-width: 85%;
+            max-height: 85%;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .domain-card:hover .domain-card-logo img {
+            transform: scale(1.08);
+        }
+
+        .domain-card-logo .logo-placeholder {
+            font-family: 'Bungee', cursive;
+            font-size: 1.6rem;
+            color: rgba(155, 48, 255, 0.25);
+            text-align: center;
+            padding: 10px;
+            letter-spacing: 2px;
+        }
+
+        .domain-card-body {
+            padding: 18px 20px;
+        }
+
+        .domain-card-name {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .domain-card-name .tld {
+            color: var(--slime);
+        }
+
+        .domain-tld-list {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .tld-badge {
+            background: rgba(123, 199, 77, 0.15);
+            color: var(--slime);
+            font-family: 'Bungee', cursive;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(123, 199, 77, 0.3);
+        }
+
+        .domain-card-desc {
+            font-size: 0.85rem;
+            color: #7a6a9a;
+            margin-bottom: 12px;
+        }
+
+        .domain-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .domain-card-price {
+            font-family: 'Bungee', cursive;
+            color: var(--sunny);
+            font-size: 1.1rem;
+        }
+
+        .domain-card-tag {
+            font-size: 0.7rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 10px;
+            background: rgba(155, 48, 255, 0.2);
+            color: var(--splat-purple);
+            letter-spacing: 1px;
+        }
+
+        .domain-card-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--nick-orange);
+            color: #fff;
+            font-family: 'Bungee', cursive;
+            font-size: 0.65rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+
+        /* DOMAIN MODAL */
+        .domain-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .domain-modal.active {
+            display: flex;
+        }
+
+        .domain-modal-backdrop {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+        }
+
+        .domain-modal-content {
+            position: relative;
+            background: linear-gradient(145deg, #1a0840, #0d0320);
+            border: 2px solid var(--splat-purple);
+            border-radius: 25px;
+            padding: 40px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            animation: modalPop 0.3s ease-out;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .domain-modal-close {
+            position: absolute;
+            top: 15px; right: 20px;
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .domain-modal-close:hover { color: #fff; }
+
+        .domain-modal-logo {
+            width: 100%;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+        }
+
+        .domain-modal-logo img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .domain-modal-logo .logo-placeholder {
+            font-family: 'Bungee', cursive;
+            font-size: 2.2rem;
+            color: rgba(155, 48, 255, 0.3);
+        }
+
+        .domain-modal-name {
+            font-family: 'Bungee', cursive;
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .domain-modal-desc {
+            color: #8a7aaa;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .domain-modal-price {
+            font-family: 'Bungee', cursive;
+            font-size: 2rem;
+            color: var(--sunny);
+            margin-bottom: 25px;
+        }
+
+        .domain-modal-actions {
+            margin-bottom: 25px;
+        }
+
+        .domain-modal-btn {
+            font-family: 'Bungee', cursive;
+            font-size: 1rem;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .inquire-btn {
+            background: linear-gradient(135deg, var(--nick-orange), var(--hot-pink));
+            color: #fff;
+            box-shadow: 0 5px 20px rgba(255, 111, 0, 0.3);
+        }
+
+        .inquire-btn:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 30px rgba(255, 111, 0, 0.5);
+        }
+
+        .domain-modal-details {
+            border-top: 1px solid rgba(155, 48, 255, 0.2);
+            padding-top: 20px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 0.85rem;
+        }
+
+        .detail-row span:first-child {
+            color: #6a5a8a;
+        }
+
+        .detail-row span:last-child {
+            color: #b8a0d0;
+            font-weight: 700;
+        }
+
+        /* HANGOUT / CHAT */
+        .hangout-section {
+            text-align: center;
+        }
+
+        .hangout-box {
+            background: linear-gradient(135deg, #2d1155, #1a0533);
+            border: 3px solid var(--hot-pink);
+            border-radius: 25px;
+            padding: 50px 30px;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hangout-box .assboy-float {
+            width: 120px;
+            position: absolute;
+            top: -60px;
+            right: 30px;
+            transform: rotate(10deg);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hangout-box h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            color: var(--sky-blue);
+            margin-bottom: 15px;
+        }
+
+        .hangout-box p {
+            color: #c0a8e0;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .hangout-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--hot-pink), var(--splat-purple));
+            color: #fff;
+            font-family: 'Bungee', cursive;
+            font-size: 1.3rem;
+            padding: 15px 50px;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 5px 25px rgba(255, 60, 172, 0.4);
+        }
+
+        .hangout-cta:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 35px rgba(255, 60, 172, 0.6);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0,0,0,0.3);
+            margin-top: 60px;
+        }
+
+        footer .footer-logo {
+            font-family: 'Bungee Shade', cursive;
+            font-size: 2rem;
+            color: var(--nick-orange);
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: #6a5080;
+            font-size: 0.9rem;
+        }
+
+        /* SPLAT DECORATIONS */
+        .splat-bg {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+            font-size: 15rem;
+            top: 20%;
+            left: -5%;
+            transform: rotate(-20deg);
+        }
+
+        /* ANIMATIONS */
+        @keyframes wobble {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-2deg); }
+            75% { transform: rotate(2deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: rotate(15deg) scale(1); }
+            50% { transform: rotate(15deg) scale(1.1); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* SNAKE GAME MODAL */
+        .game-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .game-modal.active { display: flex; }
+
+        .game-modal canvas {
+            border: 3px solid var(--slime);
+            border-radius: 10px;
+            background: #111;
+            max-width: 90vw;
+            max-height: 80vh;
+        }
+
+        .game-modal.dicktrail-active canvas {
+            width: min(90vw, 900px);
+            height: min(80vh, 750px);
+        }
+
+        .game-modal .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Bungee', cursive;
+        }
+
+        .game-modal .game-title {
+            font-family: 'Bungee', cursive;
+            color: var(--slime);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .game-modal .game-score {
+            font-family: 'Fredoka One', cursive;
+            color: var(--sunny);
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .game-modal .game-instructions {
+            color: #888;
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+            .slime-header nav { gap: 10px; }
+            .slime-header nav a { font-size: 0.9rem; padding: 6px 14px; }
+            .hero { padding: 40px 15px 60px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="splat-bg">SPLAT!</div>
+
+<!-- SLIME NAV -->
+<header class="slime-header">
+    <nav>
+        <a href="#games">Games</a>
+        <a href="#domains">Domains</a>
+        <a href="#hangout">Hangout</a>
+    </nav>
+</header>
+<div class="slime-drip">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,0 L0,20 Q60,20 60,40 Q60,60 40,60 Q20,60 20,40 Q20,20 80,20 L160,20 Q200,20 200,35 Q200,55 185,55 Q170,55 170,35 Q170,20 240,20 L480,20 Q510,20 510,45 Q510,58 495,58 Q480,58 480,45 Q480,20 540,20 L720,20 Q760,20 760,30 Q760,45 748,45 Q736,45 736,30 Q736,20 800,20 L960,20 Q1000,20 1000,50 Q1000,60 985,60 Q970,60 970,50 Q970,20 1040,20 L1200,20 Q1230,20 1230,35 Q1230,50 1218,50 Q1206,50 1206,35 Q1206,20 1280,20 L1440,20 L1440,0 Z"
+              fill="#7BC74D"/>
+    </svg>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <h1 class="hero-title">ASSBOY</h1>
+    <p class="hero-subtitle">The Internet's Chillest Hangout Spot</p>
+    <div class="hero-character">
+        <img src="images/assboy-hero.png" alt="AssBoy - Your Favorite Hero">
+        <span class="hero-badge">NEW!</span>
+    </div>
+</section>
+
+<!-- GAMES -->
+<section class="section" id="games">
+    <h2 class="section-title purple">GAMES <span class="splat">SPLAT!</span></h2>
+    <div class="games-grid">
+        <div class="game-card" onclick="openGame('snake')">
+            <span class="game-icon">🐍</span>
+            <h3>Butt Snake</h3>
+            <p>Classic snake but make it cheeky. Eat the peaches, grow your tail!</p>
+            <span class="play-btn">PLAY NOW</span>
+        </div>
+        <div class="game-card" onclick="openGame('clicker')">
+            <span class="game-icon">🍑</span>
+            <h3>Peach Clicker</h3>
+            <p>How fast can you tap? Click the peach before time runs out!</p>
+            <span class="play-btn">PLAY NOW</span>
+        </div>
+        <div class="game-card" onclick="openGame('dicktrail')">
+            <span class="game-icon">🍆</span>
+            <h3>DickTrail</h3>
+            <p>Oregon Trail but... different. Can you make it to the Promised Land?</p>
+            <span class="play-btn">PLAY NOW</span>
+        </div>
+        <div class="game-card" onclick="openGame('dodge')">
+            <span class="game-icon">💨</span>
+            <h3>Fart Dodge</h3>
+            <p>Dodge the incoming clouds! How long can you survive?</p>
+            <span class="play-btn">PLAY NOW</span>
+        </div>
+    </div>
+</section>
+
+<!-- DOMAINS FOR SALE -->
+<section class="section domains-section" id="domains">
+    <h2 class="section-title green">DOMAINS FOR SALE</h2>
+    <div class="domains-filter">
+        <button class="filter-btn active" data-filter="all">ALL</button>
+        <button class="filter-btn" data-filter="tech">TECH</button>
+        <button class="filter-btn" data-filter="gaming">GAMING</button>
+        <button class="filter-btn" data-filter="lifestyle">LIFESTYLE</button>
+        <button class="filter-btn" data-filter="entertainment">ENTERTAINMENT</button>
+    </div>
+    <div class="domains-gallery" id="domains-gallery">
+        <!-- Populated by JS from domains.json -->
+    </div>
+</section>
+
+<!-- DOMAIN MODAL -->
+<div class="domain-modal" id="domain-modal">
+    <div class="domain-modal-backdrop" onclick="closeDomainModal()"></div>
+    <div class="domain-modal-content">
+        <button class="domain-modal-close" onclick="closeDomainModal()">&times;</button>
+        <div class="domain-modal-logo" id="modal-logo"></div>
+        <h2 class="domain-modal-name" id="modal-name"></h2>
+        <p class="domain-modal-desc" id="modal-desc"></p>
+        <div class="domain-modal-price" id="modal-price"></div>
+        <div class="domain-modal-actions">
+            <button class="domain-modal-btn buy-btn" id="modal-buy" style="background:var(--slime);color:var(--dark-bg);">BUY NOW</button>
+            <button class="domain-modal-btn inquire-btn" id="modal-inquire">MAKE AN OFFER</button>
+        </div>
+        <div class="domain-modal-details">
+            <div class="detail-row"><span>Category</span><span id="modal-cat"></span></div>
+            <div class="detail-row"><span>Extension</span><span>.com</span></div>
+            <div class="detail-row"><span>Logo</span><span>AI Generated</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- HANGOUT -->
+<section class="section hangout-section" id="hangout">
+    <h2 class="section-title pink">THE HANGOUT</h2>
+    <div class="hangout-box">
+        <img src="images/assboy-normal.png" alt="AssBoy chillin" class="assboy-float">
+        <h3>Come Hang With AssBoy!</h3>
+        <p>The chillest corner of the internet. Play games, chat with friends, and vibe out. No drama, just good times.</p>
+        <a href="#games" class="hangout-cta">LET'S GO!</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">ASSBOY</div>
+    <p>&copy; 2026 AssBoy.com &mdash; Saving the internet, one cheek at a time.</p>
+</footer>
+
+<!-- GAME MODALS -->
+<div class="game-modal" id="game-modal">
+    <button class="close-btn" onclick="closeGame()">&times;</button>
+    <div class="game-title" id="game-title"></div>
+    <canvas id="game-canvas" width="400" height="400"></canvas>
+    <div class="game-score" id="game-score"></div>
+    <div class="game-instructions" id="game-instructions"></div>
+</div>
+
+<script>
+// ============ GAME ENGINE ============
+const modal = document.getElementById('game-modal');
+const canvas = document.getElementById('game-canvas');
+const ctx = canvas.getContext('2d');
+const scoreEl = document.getElementById('game-score');
+const titleEl = document.getElementById('game-title');
+const instrEl = document.getElementById('game-instructions');
+let gameLoop = null;
+let currentGame = null;
+
+function openGame(game) {
+    modal.classList.add('active');
+    modal.classList.toggle('dicktrail-active', game === 'dicktrail');
+    currentGame = game;
+    if (game === 'snake') startSnake();
+    else if (game === 'clicker') startClicker();
+    else if (game === 'dicktrail') startDickTrail();
+    else if (game === 'dodge') startDodge();
+}
+
+function closeGame() {
+    modal.classList.remove('active');
+    modal.classList.remove('dicktrail-active');
+    if (gameLoop) clearInterval(gameLoop);
+    gameLoop = null;
+    currentGame = null;
+    canvas.width = 400;
+    canvas.height = 400;
+}
+
+// ============ BUTT SNAKE ============
+function startSnake() {
+    titleEl.textContent = '🐍 BUTT SNAKE';
+    instrEl.textContent = 'Arrow keys or WASD to move';
+    const size = 20;
+    const cols = canvas.width / size;
+    const rows = canvas.height / size;
+    let snake = [{x: 10, y: 10}];
+    let dir = {x: 1, y: 0};
+    let food = spawnFood();
+    let score = 0;
+    let nextDir = dir;
+
+    function spawnFood() {
+        return {x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows)};
+    }
+
+    function draw() {
+        ctx.fillStyle = '#111';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Food (peach)
+        ctx.font = '18px serif';
+        ctx.fillText('🍑', food.x * size + 1, food.y * size + 17);
+
+        // Snake
+        snake.forEach((seg, i) => {
+            ctx.fillStyle = i === 0 ? '#FF6F00' : '#7BC74D';
+            ctx.beginPath();
+            ctx.arc(seg.x * size + size/2, seg.y * size + size/2, size/2 - 1, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        scoreEl.textContent = 'Peaches: ' + score;
+    }
+
+    function update() {
+        dir = nextDir;
+        const head = {x: snake[0].x + dir.x, y: snake[0].y + dir.y};
+
+        // Wrap around
+        if (head.x < 0) head.x = cols - 1;
+        if (head.x >= cols) head.x = 0;
+        if (head.y < 0) head.y = rows - 1;
+        if (head.y >= rows) head.y = 0;
+
+        // Self collision
+        if (snake.some(s => s.x === head.x && s.y === head.y)) {
+            clearInterval(gameLoop);
+            scoreEl.textContent = 'GAME OVER! Peaches: ' + score + ' — Click to restart';
+            canvas.onclick = () => { canvas.onclick = null; startSnake(); };
+            return;
+        }
+
+        snake.unshift(head);
+
+        if (head.x === food.x && head.y === food.y) {
+            score++;
+            food = spawnFood();
+        } else {
+            snake.pop();
+        }
+        draw();
+    }
+
+    document.onkeydown = (e) => {
+        if (currentGame !== 'snake') return;
+        const k = e.key.toLowerCase();
+        if ((k === 'arrowup' || k === 'w') && dir.y === 0) nextDir = {x: 0, y: -1};
+        if ((k === 'arrowdown' || k === 's') && dir.y === 0) nextDir = {x: 0, y: 1};
+        if ((k === 'arrowleft' || k === 'a') && dir.x === 0) nextDir = {x: -1, y: 0};
+        if ((k === 'arrowright' || k === 'd') && dir.x === 0) nextDir = {x: 1, y: 0};
+        e.preventDefault();
+    };
+
+    if (gameLoop) clearInterval(gameLoop);
+    gameLoop = setInterval(update, 120);
+    draw();
+}
+
+// ============ PEACH CLICKER ============
+function startClicker() {
+    titleEl.textContent = '🍑 PEACH CLICKER';
+    instrEl.textContent = 'Click the peach as fast as you can! 15 seconds!';
+    let score = 0;
+    let timeLeft = 15;
+    let peachX = 200, peachY = 200;
+
+    function draw() {
+        ctx.fillStyle = '#111';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = '60px serif';
+        ctx.fillText('🍑', peachX - 30, peachY + 20);
+        scoreEl.textContent = 'Clicks: ' + score + ' | Time: ' + timeLeft + 's';
+    }
+
+    function movePeach() {
+        peachX = 40 + Math.random() * 320;
+        peachY = 40 + Math.random() * 320;
+    }
+
+    document.onkeydown = null;
+    canvas.onclick = (e) => {
+        if (currentGame !== 'clicker' || timeLeft <= 0) return;
+        const rect = canvas.getBoundingClientRect();
+        const cx = e.clientX - rect.left;
+        const cy = e.clientY - rect.top;
+        const dist = Math.sqrt((cx - peachX) ** 2 + (cy - peachY) ** 2);
+        if (dist < 40) {
+            score++;
+            movePeach();
+            draw();
+        }
+    };
+
+    if (gameLoop) clearInterval(gameLoop);
+    draw();
+    gameLoop = setInterval(() => {
+        timeLeft--;
+        draw();
+        if (timeLeft <= 0) {
+            clearInterval(gameLoop);
+            scoreEl.textContent = 'DONE! Final score: ' + score + ' clicks! Click to restart';
+            canvas.onclick = () => { canvas.onclick = null; startClicker(); };
+        }
+    }, 1000);
+}
+
+// ============ DICKTRAIL (90s ANIMATED) ============
+function startDickTrail() {
+    titleEl.textContent = '🍆 DICKTRAIL';
+    instrEl.textContent = '';
+    scoreEl.textContent = '';
+    if (gameLoop) clearInterval(gameLoop);
+    document.onkeydown = null;
+    canvas.onclick = null;
+    canvas.width = 800;
+    canvas.height = 600;
+
+    const W = canvas.width, H = canvas.height;
+
+    const state = {
+        day: 1, miles: 0, goal: 2000, health: 100,
+        food: 200, money: 400,
+        party: ['Big Richard', 'Little Willy', 'Long Johnson', 'Peter'],
+        dead: [], pace: 'steady', screen: 'title',
+    };
+
+    const landmarks = [
+        { mile: 200, name: 'Shaft Creek', event: 'The creek is long and winding. Everyone gets soaked crossing it.', biome: 'river' },
+        { mile: 500, name: 'Fort Throb', event: 'A throbbing trading post emerges from the bush. Lube and jerky acquired.', biome: 'fort' },
+        { mile: 800, name: 'Mount Girthmore', event: 'The girthiest mountain you\'ve ever seen. All day to get over the top.', biome: 'mountain' },
+        { mile: 1100, name: 'Ballsack Basin', event: 'Two enormous hills cradle a sweaty valley. Smells funky.', biome: 'hills' },
+        { mile: 1400, name: 'Tip Top Summit', event: 'You\'ve reached the tip! One wrong move and it\'s all downhill.', biome: 'mountain' },
+        { mile: 1700, name: 'Chafing Desert', event: 'Raw, dry, painful. Nobody brought Gold Bond.', biome: 'desert' },
+    ];
+
+    const randomEvents = [
+        { text: 'You stumble into a sausage farm! +40 food.', food: 40, health: 0 },
+        { text: 'Drank from a suspicious stream. Everyone feels violated.', food: 0, health: -20 },
+        { text: '{member} caught a nasty case of crotch rot.', food: 0, health: -15, killChance: 0.3 },
+        { text: 'Found an abandoned pants wagon! +$80 and 30 food.', food: 30, health: 0, money: 80 },
+        { text: 'Dick bandits! They steal $50 and your best sausages.', food: -30, health: -5, money: -50 },
+        { text: 'Perfect weather. Everyone hangs loose!', food: 0, health: 10 },
+        { text: '{member} sat on a cactus. Ouch.', food: 0, health: -10 },
+        { text: 'Found juicy plums in a bush! +25 food.', food: 25, health: 5 },
+        { text: 'A raging storm. Everything is wet and floppy.', food: -10, health: -10 },
+        { text: '{member} got bit by a one-eyed snake!', food: 0, health: -20, killChance: 0.2 },
+        { text: 'Nudist colony shares supplies! +50 food.', food: 50, health: 5 },
+        { text: 'The wagon tongue snapped. Half day fixing it.', food: -5, health: 0 },
+        { text: 'Hot spring! Everyone soaks their weary members.', food: 0, health: 25 },
+        { text: '{member} wrestled a bear naked. Bold.', food: 20, health: -15, killChance: 0.15 },
+        { text: 'Found a trunk of viagra. Everyone energized! +15 HP.', food: 0, health: 15 },
+        { text: '{member} went skinny dipping. Lost all clothes.', food: 0, health: -8 },
+        { text: 'Snake oil salesman rips you off. -$40.', food: 0, health: -5, money: -40 },
+        { text: 'Massive banana tree! +35 food.', food: 35, health: 0 },
+        { text: '{member} held the compass upside down. Lost a day.', food: -8, health: 0 },
+        { text: 'Oasis shaped like... nevermind. Full rest!', food: 10, health: 20 },
+    ];
+
+    // ---- BIOME SYSTEM ----
+    function getBiome() {
+        const m = state.miles;
+        if (m < 200) return 'plains';
+        if (m < 350) return 'river';
+        if (m < 500) return 'forest';
+        if (m < 650) return 'fort';
+        if (m < 900) return 'mountain';
+        if (m < 1200) return 'hills';
+        if (m < 1500) return 'mountain';
+        if (m < 1800) return 'desert';
+        return 'paradise';
+    }
+
+    const biomeColors = {
+        plains:   { sky: '#4A90D9', ground: '#5B8C3E', dirt: '#8B6914', far: '#3D7A2E' },
+        river:    { sky: '#5A9AE9', ground: '#4A7C2E', dirt: '#6B5A14', far: '#2868A0', water: '#2878C0' },
+        forest:   { sky: '#3A6A99', ground: '#2D5A1E', dirt: '#5A4A0A', far: '#1A4A0E' },
+        fort:     { sky: '#4A90D9', ground: '#6B8C3E', dirt: '#8B7924', far: '#5A7A2E' },
+        mountain: { sky: '#6AAAE9', ground: '#5A7A3E', dirt: '#7A6A1A', far: '#8899AA' },
+        hills:    { sky: '#4A90D9', ground: '#6A9A3E', dirt: '#9A7A24', far: '#5A8A2E' },
+        desert:   { sky: '#C9A030', ground: '#C4A84A', dirt: '#B8962A', far: '#D4B85A' },
+        paradise: { sky: '#FF9040', ground: '#4ABA3E', dirt: '#7A6A1A', far: '#3AAA2E' },
+    };
+
+    // ---- DRAWING HELPERS ----
+    let animFrame = 0;
+    let scrollX = 0;
+    const buttons = [];
+
+    function drawSky(colors) {
+        const grad = ctx.createLinearGradient(0, 0, 0, 200);
+        grad.addColorStop(0, colors.sky);
+        grad.addColorStop(1, '#fff');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, W, 200);
+    }
+
+    function drawClouds() {
+        ctx.fillStyle = 'rgba(255,255,255,0.6)';
+        for (let i = 0; i < 4; i++) {
+            const cx = ((i * 170 + 50 - scrollX * 0.2) % (W + 100)) - 50;
+            const cy = 30 + i * 25 + Math.sin(i * 2.3) * 15;
+            ctx.beginPath();
+            ctx.arc(cx, cy, 25, 0, Math.PI * 2);
+            ctx.arc(cx + 20, cy - 8, 20, 0, Math.PI * 2);
+            ctx.arc(cx + 35, cy, 22, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function drawMountains(colors) {
+        ctx.fillStyle = colors.far;
+        ctx.beginPath();
+        ctx.moveTo(0, 200);
+        for (let x = 0; x <= W; x += 3) {
+            const offset = (x - scrollX * 0.3) * 0.02;
+            const h = Math.sin(offset) * 40 + Math.sin(offset * 2.3) * 20 + Math.cos(offset * 0.7) * 15;
+            ctx.lineTo(x, 140 - h);
+        }
+        ctx.lineTo(W, 200);
+        ctx.fill();
+    }
+
+    function drawGround(colors) {
+        // Main ground
+        ctx.fillStyle = colors.ground;
+        ctx.fillRect(0, 200, W, 80);
+        // Trail/dirt path
+        ctx.fillStyle = colors.dirt;
+        ctx.fillRect(0, 240, W, 30);
+        // Dirt texture
+        ctx.fillStyle = 'rgba(0,0,0,0.1)';
+        for (let i = 0; i < 20; i++) {
+            const dx = ((i * 37 + 10 - scrollX) % W);
+            ctx.fillRect(dx, 245 + (i % 3) * 5, 8 + (i % 4) * 3, 2);
+        }
+    }
+
+    function drawRiver() {
+        ctx.fillStyle = '#2878C0';
+        ctx.fillRect(0, 270, W, 30);
+        // Waves
+        ctx.strokeStyle = '#5AB0FF';
+        ctx.lineWidth = 2;
+        for (let r = 0; r < 3; r++) {
+            ctx.beginPath();
+            for (let x = 0; x <= W; x += 4) {
+                const y = 278 + r * 8 + Math.sin((x - scrollX * 2 + r * 30) * 0.08) * 3;
+                x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+        }
+    }
+
+    function drawCacti() {
+        ctx.fillStyle = '#2A6A1A';
+        for (let i = 0; i < 5; i++) {
+            const cx = ((i * 130 + 40 - scrollX * 0.8) % (W + 80)) - 40;
+            // Main trunk
+            ctx.fillRect(cx, 195, 8, 35);
+            // Arms
+            ctx.fillRect(cx - 10, 205, 12, 6);
+            ctx.fillRect(cx - 10, 200, 6, 12);
+            ctx.fillRect(cx + 6, 210, 12, 6);
+            ctx.fillRect(cx + 12, 205, 6, 12);
+        }
+    }
+
+    function drawTrees() {
+        for (let i = 0; i < 6; i++) {
+            const tx = ((i * 110 + 30 - scrollX * 0.7) % (W + 60)) - 30;
+            const ty = 170 + (i % 3) * 12;
+            ctx.fillStyle = '#4A2A0A';
+            ctx.fillRect(tx + 8, ty, 8, 35);
+            ctx.fillStyle = '#1A6A0E';
+            ctx.beginPath();
+            ctx.moveTo(tx + 12, ty - 25);
+            ctx.lineTo(tx - 5, ty + 10);
+            ctx.lineTo(tx + 29, ty + 10);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.moveTo(tx + 12, ty - 15);
+            ctx.lineTo(tx - 2, ty + 5);
+            ctx.lineTo(tx + 26, ty + 5);
+            ctx.fill();
+        }
+    }
+
+    function drawFort() {
+        const fx = ((250 - scrollX * 0.5) % W);
+        ctx.fillStyle = '#8B6914';
+        // Walls
+        ctx.fillRect(fx, 160, 80, 50);
+        // Gate
+        ctx.fillStyle = '#3A2A0A';
+        ctx.fillRect(fx + 30, 185, 20, 25);
+        // Towers
+        ctx.fillStyle = '#9B7924';
+        ctx.fillRect(fx - 5, 150, 18, 60);
+        ctx.fillRect(fx + 67, 150, 18, 60);
+        // Flags
+        ctx.fillStyle = '#FF3CAC';
+        ctx.fillRect(fx + 2, 138, 12, 8);
+        ctx.fillRect(fx + 74, 138, 12, 8);
+        ctx.fillStyle = '#6A4A0A';
+        ctx.fillRect(fx + 4, 135, 2, 20);
+        ctx.fillRect(fx + 76, 135, 2, 20);
+        // Sign
+        ctx.fillStyle = '#FFD700';
+        ctx.font = 'bold 8px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('FORT THROB', fx + 40, 175);
+        ctx.textAlign = 'left';
+    }
+
+    // ---- WAGON (the star of the show) ----
+    function drawWagon(wx, wy) {
+        const bounce = Math.sin(animFrame * 0.3) * 2;
+        const lean = Math.sin(animFrame * 0.15) * 1;
+        const y = wy + bounce;
+
+        // Wagon body (looks like a... wagon)
+        ctx.fillStyle = '#C4843A';
+        ctx.fillRect(wx - 20, y - 22, 50, 18);
+        // Wagon cover (rounded top)
+        ctx.fillStyle = '#F5E6D0';
+        ctx.beginPath();
+        ctx.moveTo(wx - 15, y - 22);
+        ctx.quadraticCurveTo(wx + 5, y - 45, wx + 25, y - 22);
+        ctx.fill();
+        ctx.strokeStyle = '#C4843A';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(wx - 10, y - 22);
+        ctx.quadraticCurveTo(wx + 5, y - 38, wx + 20, y - 22);
+        ctx.stroke();
+
+        // Wheels
+        const wheelSpin = animFrame * 0.4;
+        for (const wheelX of [wx - 12, wx + 22]) {
+            ctx.strokeStyle = '#5A3A0A';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(wheelX, y, 8, 0, Math.PI * 2);
+            ctx.stroke();
+            // Spokes
+            ctx.lineWidth = 1;
+            for (let s = 0; s < 4; s++) {
+                const a = wheelSpin + s * Math.PI / 2;
+                ctx.beginPath();
+                ctx.moveTo(wheelX, y);
+                ctx.lineTo(wheelX + Math.cos(a) * 7, y + Math.sin(a) * 7);
+                ctx.stroke();
+            }
+        }
+
+        // Dick character driving (just a head peeking out)
+        ctx.fillStyle = '#FFB98A';
+        ctx.beginPath();
+        ctx.arc(wx + 2, y - 30 + lean, 7, 0, Math.PI * 2);
+        ctx.fill();
+        // Eyes
+        ctx.fillStyle = '#000';
+        ctx.fillRect(wx, y - 32 + lean, 2, 2);
+        ctx.fillRect(wx + 4, y - 32 + lean, 2, 2);
+
+        // Dust trail
+        ctx.fillStyle = 'rgba(180,160,120,0.4)';
+        for (let d = 0; d < 5; d++) {
+            const dx = wx - 30 - d * 12 - (animFrame * 2 % 10);
+            const dy = y + 2 + Math.sin(d + animFrame * 0.5) * 3;
+            const ds = 4 + d * 2;
+            ctx.beginPath();
+            ctx.arc(dx, dy, ds, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    // ---- SCENE RENDERER ----
+    function drawScene() {
+        const biome = getBiome();
+        const colors = biomeColors[biome] || biomeColors.plains;
+
+        drawSky(colors);
+        drawClouds();
+
+        if (biome === 'mountain') {
+            // Big peaks
+            ctx.fillStyle = '#7888AA';
+            ctx.beginPath();
+            ctx.moveTo(0, 200);
+            for (let x = 0; x <= W; x += 2) {
+                const off = (x - scrollX * 0.2) * 0.015;
+                const h = Math.sin(off) * 60 + Math.cos(off * 1.7) * 30 + 40;
+                ctx.lineTo(x, 160 - h);
+            }
+            ctx.lineTo(W, 200); ctx.fill();
+            // Snow caps
+            ctx.fillStyle = '#fff';
+            ctx.beginPath();
+            for (let x = 0; x <= W; x += 2) {
+                const off = (x - scrollX * 0.2) * 0.015;
+                const h = Math.sin(off) * 60 + Math.cos(off * 1.7) * 30 + 40;
+                const peak = 160 - h;
+                if (peak < 110) ctx.fillRect(x, peak, 2, 8);
+            }
+        } else {
+            drawMountains(colors);
+        }
+
+        if (biome === 'forest') drawTrees();
+        if (biome === 'desert') drawCacti();
+        if (biome === 'fort') drawFort();
+
+        drawGround(colors);
+
+        if (biome === 'river') drawRiver();
+
+        // Biome label
+        if (biome === 'paradise') {
+            ctx.fillStyle = '#FFD700';
+            ctx.font = 'bold 10px monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('~ THE GLORIOUS HOLE ~', W/2, 190);
+            ctx.textAlign = 'left';
+        }
+    }
+
+    // ---- TRAVEL ANIMATION ----
+    let travelAnim = null; // { frames, total, dist, onDone, eventData }
+
+    function animateTravel(dist, onDone) {
+        const totalFrames = 90 + dist; // longer travel = longer anim
+        travelAnim = { frame: 0, total: Math.min(totalFrames, 180), dist, onDone };
+    }
+
+    function travelAnimLoop() {
+        if (!travelAnim) return;
+        animFrame++;
+        scrollX += 3;
+        travelAnim.frame++;
+
+        ctx.clearRect(0, 0, W, H);
+        drawScene();
+        drawWagon(160, 242);
+
+        // HUD overlay
+        drawHUD();
+
+        // Progress text
+        ctx.fillStyle = 'rgba(0,0,0,0.7)';
+        ctx.fillRect(W/2 - 100, H - 50, 200, 30);
+        ctx.fillStyle = '#7BC74D';
+        ctx.font = 'bold 12px monospace';
+        ctx.textAlign = 'center';
+        const pct = Math.floor((travelAnim.frame / travelAnim.total) * 100);
+        ctx.fillText(`Traveling... ${pct}%`, W/2, H - 31);
+        ctx.textAlign = 'left';
+
+        if (travelAnim.frame >= travelAnim.total) {
+            const cb = travelAnim.onDone;
+            travelAnim = null;
+            cb();
+            return;
+        }
+        requestAnimationFrame(travelAnimLoop);
+    }
+
+    // ---- HUNTING MINIGAME ----
+    let huntState = null;
+
+    function startHuntMinigame() {
+        state.screen = 'hunt';
+        huntState = {
+            timeLeft: 8 * 60, // 8 seconds at 60fps
+            targets: [],
+            score: 0,
+            shots: 15,
+            crosshair: { x: W/2, y: 200 },
+        };
+        // Spawn initial targets
+        for (let i = 0; i < 4; i++) spawnTarget();
+
+        document.onkeydown = null;
+        canvas.onmousemove = (e) => {
+            if (!huntState) return;
+            const rect = canvas.getBoundingClientRect();
+            huntState.crosshair.x = (e.clientX - rect.left) * (W / rect.width);
+            huntState.crosshair.y = (e.clientY - rect.top) * (H / rect.height);
+        };
+        canvas.onclick = (e) => {
+            if (!huntState || huntState.shots <= 0) return;
+            huntState.shots--;
+            const rect = canvas.getBoundingClientRect();
+            const cx = (e.clientX - rect.left) * (W / rect.width);
+            const cy = (e.clientY - rect.top) * (H / rect.height);
+            // Check hits
+            for (let i = huntState.targets.length - 1; i >= 0; i--) {
+                const t = huntState.targets[i];
+                const dist = Math.sqrt((cx - t.x) ** 2 + (cy - t.y) ** 2);
+                if (dist < t.size + 10) {
+                    huntState.score += t.points;
+                    huntState.targets.splice(i, 1);
+                    spawnTarget();
+                    break;
+                }
+            }
+        };
+        if (gameLoop) clearInterval(gameLoop);
+        gameLoop = null;
+        huntAnimLoop();
+    }
+
+    function spawnTarget() {
+        if (!huntState) return;
+        const types = [
+            { emoji: '🌭', points: 15, size: 16, speed: 1.5 },
+            { emoji: '🍖', points: 10, size: 18, speed: 1 },
+            { emoji: '🐓', points: 20, size: 14, speed: 2.5 },
+            { emoji: '🍆', points: 25, size: 12, speed: 3 },
+            { emoji: '🐿️', points: 8, size: 13, speed: 2 },
+        ];
+        const t = types[Math.floor(Math.random() * types.length)];
+        huntState.targets.push({
+            x: -20,
+            y: 100 + Math.random() * 140,
+            ...t,
+            dir: Math.random() > 0.5 ? 1 : -1,
+            wobble: Math.random() * 10,
+        });
+    }
+
+    function huntAnimLoop() {
+        if (!huntState) return;
+        animFrame++;
+        huntState.timeLeft--;
+
+        // Draw hunting scene
+        const colors = biomeColors[getBiome()];
+        drawSky(colors);
+        drawClouds();
+        drawMountains(colors);
+        drawGround(colors);
+
+        // Move & draw targets
+        huntState.targets.forEach(t => {
+            t.x += t.speed * t.dir;
+            t.y += Math.sin(animFrame * 0.1 + t.wobble) * 0.5;
+            if (t.x > W + 30) t.x = -30;
+            if (t.x < -30) t.x = W + 30;
+            ctx.font = `${t.size * 2}px serif`;
+            ctx.fillText(t.emoji, t.x - t.size, t.y + t.size);
+        });
+
+        // Crosshair
+        const ch = huntState.crosshair;
+        ctx.strokeStyle = '#FF3CAC';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(ch.x, ch.y, 15, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(ch.x - 20, ch.y); ctx.lineTo(ch.x + 20, ch.y);
+        ctx.moveTo(ch.x, ch.y - 20); ctx.lineTo(ch.x, ch.y + 20);
+        ctx.stroke();
+
+        // HUD
+        ctx.fillStyle = 'rgba(0,0,0,0.8)';
+        ctx.fillRect(0, 0, W, 35);
+        ctx.fillStyle = '#FFD700';
+        ctx.font = 'bold 14px monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText(`HUNT! Meat: ${huntState.score}`, 15, 23);
+        ctx.fillStyle = '#FF6F00';
+        ctx.fillText(`Shots: ${huntState.shots}`, 200, 23);
+        ctx.fillStyle = '#7BC74D';
+        const secs = Math.ceil(huntState.timeLeft / 60);
+        ctx.fillText(`Time: ${secs}s`, 340, 23);
+
+        ctx.fillStyle = 'rgba(0,0,0,0.6)';
+        ctx.fillRect(0, H - 30, W, 30);
+        ctx.fillStyle = '#aaa';
+        ctx.font = '11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Click to shoot! Bag as much meat as you can.', W/2, H - 12);
+        ctx.textAlign = 'left';
+
+        if (huntState.timeLeft <= 0 || huntState.shots <= 0) {
+            endHunt();
+            return;
+        }
+
+        // Respawn targets
+        if (huntState.targets.length < 3 && Math.random() < 0.03) spawnTarget();
+
+        requestAnimationFrame(huntAnimLoop);
+    }
+
+    function endHunt() {
+        const haul = huntState.score;
+        state.food += haul;
+        state.day++;
+        state.food -= Math.floor(2 * state.party.length);
+        canvas.onmousemove = null;
+
+        const huntMsgs = [
+            `Bagged ${haul} lbs of wild sausage!`,
+            `Found ${haul} lbs of mystery meat in the bush!`,
+            `Hunted down ${haul} lbs of plump wieners!`,
+        ];
+        lines.push(huntMsgs[Math.floor(Math.random() * huntMsgs.length)]);
+
+        if (Math.random() < 0.15 && state.party.length > 0) {
+            const m = state.party[Math.floor(Math.random() * state.party.length)];
+            lines.push(`!!${m} shot themselves in the foot! -10 HP`);
+            state.health -= 10;
+        }
+        lines.push('');
+        huntState = null;
+        state.screen = 'menu';
+        canvas.onclick = mainClick;
+        showMenu();
+    }
+
+    // ---- TOMBSTONE ----
+    function showTombstone(name, onDone) {
+        let frame = 0;
+        function drawTomb() {
+            frame++;
+            ctx.fillStyle = '#0a0a1a';
+            ctx.fillRect(0, 0, W, H);
+
+            // Night sky
+            const grad = ctx.createLinearGradient(0, 0, 0, 200);
+            grad.addColorStop(0, '#0a0a2a');
+            grad.addColorStop(1, '#1a0533');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, W, 300);
+
+            // Stars
+            ctx.fillStyle = '#fff';
+            for (let i = 0; i < 30; i++) {
+                const sx = (i * 47 + 13) % W;
+                const sy = (i * 31 + 7) % 180;
+                const blink = Math.sin(frame * 0.1 + i) > 0.3 ? 2 : 1;
+                ctx.fillRect(sx, sy, blink, blink);
+            }
+
+            // Ground
+            ctx.fillStyle = '#2A1A0A';
+            ctx.fillRect(0, 300, W, 200);
+
+            // Tombstone
+            const rise = Math.min(frame * 2, 80);
+            const ty = 320 - rise;
+            ctx.fillStyle = '#888';
+            ctx.fillRect(W/2 - 50, ty, 100, 120);
+            ctx.beginPath();
+            ctx.arc(W/2, ty, 50, Math.PI, 0);
+            ctx.fill();
+
+            // Text on tombstone
+            if (frame > 30) {
+                ctx.fillStyle = '#222';
+                ctx.font = 'bold 11px monospace';
+                ctx.textAlign = 'center';
+                ctx.fillText('HERE LIES', W/2, ty + 25);
+                ctx.font = 'bold 16px monospace';
+                ctx.fillText(name, W/2, ty + 50);
+                ctx.font = '10px monospace';
+                ctx.fillText('"Gone permanently limp"', W/2, ty + 70);
+                ctx.fillText('Press F to pay respects', W/2, ty + 90);
+                ctx.textAlign = 'left';
+            }
+
+            // Eggplant flowers
+            if (frame > 40) {
+                ctx.font = '16px serif';
+                ctx.fillText('🍆', W/2 - 65, ty + 110);
+                ctx.fillText('🍆', W/2 + 50, ty + 110);
+            }
+
+            if (frame < 120) {
+                requestAnimationFrame(drawTomb);
+            } else {
+                // Click to continue
+                ctx.fillStyle = '#7BC74D';
+                ctx.font = '14px monospace';
+                ctx.textAlign = 'center';
+                ctx.fillText('Click to continue...', W/2, H - 30);
+                ctx.textAlign = 'left';
+                canvas.onclick = () => {
+                    canvas.onclick = mainClick;
+                    onDone();
+                };
+            }
+        }
+        drawTomb();
+    }
+
+    // ---- VICTORY ANIMATION ----
+    function showVictory() {
+        let frame = 0;
+        const fireworks = [];
+        function drawVictory() {
+            frame++;
+            ctx.fillStyle = '#0a0a1a';
+            ctx.fillRect(0, 0, W, H);
+
+            // Sunset sky
+            const grad = ctx.createLinearGradient(0, 0, 0, 250);
+            grad.addColorStop(0, '#FF6040');
+            grad.addColorStop(0.5, '#FF9040');
+            grad.addColorStop(1, '#FFD700');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, W, 250);
+
+            // The Glorious Hole (a golden arch)
+            ctx.strokeStyle = '#FFD700';
+            ctx.lineWidth = 6;
+            ctx.beginPath();
+            ctx.arc(W/2, 250, 80, Math.PI, 0);
+            ctx.stroke();
+            ctx.fillStyle = '#FFD700';
+            ctx.font = 'bold 10px monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('THE GLORIOUS HOLE', W/2, 155);
+
+            // Ground
+            ctx.fillStyle = '#4ABA3E';
+            ctx.fillRect(0, 250, W, 250);
+
+            // Wagon arriving
+            const wagonX = Math.min(frame * 2, W/2 - 20);
+            drawWagonStatic(wagonX, 252);
+
+            // Fireworks
+            if (frame > 60 && frame % 15 === 0) {
+                fireworks.push({ x: 50 + Math.random() * (W - 100), y: 30 + Math.random() * 100, t: 0, color: ['#FF3CAC','#7BC74D','#FFD700','#00D4FF','#FF6F00'][Math.floor(Math.random()*5)] });
+            }
+            fireworks.forEach(fw => {
+                fw.t++;
+                ctx.fillStyle = fw.color;
+                for (let p = 0; p < 8; p++) {
+                    const a = (p / 8) * Math.PI * 2;
+                    const r = fw.t * 2;
+                    const px = fw.x + Math.cos(a) * r;
+                    const py = fw.y + Math.sin(a) * r;
+                    const size = Math.max(0, 4 - fw.t * 0.1);
+                    ctx.fillRect(px, py, size, size);
+                }
+            });
+
+            // Text
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 28px Fredoka One, monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('YOU MADE IT!', W/2, H - 120);
+            ctx.font = '16px monospace';
+            ctx.fillStyle = '#FFD700';
+            ctx.fillText(`${state.party.length} dicks survived out of 4`, W/2, H - 90);
+            ctx.fillText(`Journey: ${state.day} long, hard days`, W/2, H - 65);
+            if (state.dead.length) {
+                ctx.fillStyle = '#FF3CAC';
+                ctx.fillText(`Went soft: ${state.dead.join(', ')}`, W/2, H - 40);
+            }
+
+            ctx.fillStyle = '#7BC74D';
+            ctx.font = 'bold 20px monospace';
+            ctx.fillText('LEGENDARY DONG STATUS', W/2, H - 10);
+            ctx.textAlign = 'left';
+
+            scoreEl.textContent = `LEGENDARY! ${state.day} days, ${state.party.length} dicks standing`;
+
+            if (frame < 250) {
+                requestAnimationFrame(drawVictory);
+            } else {
+                canvas.onclick = () => { canvas.onclick = null; startDickTrail(); };
+            }
+        }
+        drawVictory();
+    }
+
+    function drawWagonStatic(wx, wy) {
+        ctx.fillStyle = '#C4843A';
+        ctx.fillRect(wx - 20, wy - 22, 50, 18);
+        ctx.fillStyle = '#F5E6D0';
+        ctx.beginPath();
+        ctx.moveTo(wx - 15, wy - 22);
+        ctx.quadraticCurveTo(wx + 5, wy - 45, wx + 25, wy - 22);
+        ctx.fill();
+        ctx.strokeStyle = '#5A3A0A'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.arc(wx - 12, wy, 8, 0, Math.PI * 2); ctx.stroke();
+        ctx.beginPath(); ctx.arc(wx + 22, wy, 8, 0, Math.PI * 2); ctx.stroke();
+        ctx.fillStyle = '#FFB98A';
+        ctx.beginPath(); ctx.arc(wx + 2, wy - 30, 7, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(wx, wy - 32, 2, 2);
+        ctx.fillRect(wx + 4, wy - 32, 2, 2);
+    }
+
+    // ---- HUD ----
+    function drawHUD() {
+        ctx.fillStyle = 'rgba(0,0,0,0.75)';
+        ctx.fillRect(0, 0, W, 55);
+        ctx.fillStyle = '#7BC74D';
+        ctx.font = '11px monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText(`Day ${state.day}  |  ${state.miles}/${state.goal} mi  |  Thrust: ${state.pace}`, 10, 18);
+
+        // Party icons
+        ctx.font = '12px serif';
+        const alive = state.party.length;
+        for (let i = 0; i < 4; i++) {
+            ctx.fillText(i < alive ? '🍆' : '💀', 10 + i * 20, 38);
+        }
+
+        // Health bar
+        const hpW = 100;
+        ctx.fillStyle = '#333';
+        ctx.fillRect(100, 28, hpW, 12);
+        ctx.fillStyle = state.health > 50 ? '#7BC74D' : state.health > 25 ? '#FFD700' : '#FF3CAC';
+        ctx.fillRect(100, 28, (state.health / 100) * hpW, 12);
+        ctx.fillStyle = '#fff';
+        ctx.font = '9px monospace';
+        ctx.fillText(`HP:${state.health}`, 105, 38);
+
+        // Food & Money
+        ctx.fillStyle = '#FF6F00';
+        ctx.font = '11px monospace';
+        ctx.fillText(`Food:${Math.max(0,state.food)}`, 220, 38);
+        ctx.fillStyle = '#FFD700';
+        ctx.fillText(`$${Math.max(0,state.money)}`, 320, 38);
+
+        // Progress bar
+        ctx.fillStyle = '#222';
+        ctx.fillRect(10, 46, W - 20, 5);
+        ctx.fillStyle = '#9B30FF';
+        ctx.fillRect(10, 46, ((state.miles / state.goal) * (W - 20)), 5);
+    }
+
+    // ---- MENU SCREEN ----
+    const choices = [];
+    let lines = [];
+
+    function drawMenuScreen() {
+        // Draw current biome scene (static)
+        drawScene();
+        drawWagonStatic(160, 242);
+        drawHUD();
+
+        // Menu panel
+        ctx.fillStyle = 'rgba(0,0,0,0.85)';
+        ctx.fillRect(15, 60, W - 30, H - 75);
+        ctx.strokeStyle = '#9B30FF';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(15, 60, W - 30, H - 75);
+
+        // Event text
+        ctx.fillStyle = '#7BC74D';
+        ctx.font = '12px monospace';
+        const textY = 80;
+        const maxLines = 10;
+        const visibleLines = lines.slice(-maxLines);
+        visibleLines.forEach((line, i) => {
+            if (line.startsWith('!!')) {
+                ctx.fillStyle = '#FF3CAC';
+                ctx.fillText(line.slice(2), 28, textY + i * 17);
+                ctx.fillStyle = '#7BC74D';
+            } else if (line.startsWith('$$')) {
+                ctx.fillStyle = '#FFD700';
+                ctx.fillText(line.slice(2), 28, textY + i * 17);
+                ctx.fillStyle = '#7BC74D';
+            } else if (line.startsWith('>>')) {
+                ctx.fillStyle = '#FF6F00';
+                ctx.fillText(line.slice(2), 28, textY + i * 17);
+                ctx.fillStyle = '#7BC74D';
+            } else {
+                ctx.fillText(line, 28, textY + i * 17);
+            }
+        });
+
+        // Buttons
+        let btnY = H - 22 - choices.length * 36;
+        choices.forEach((c, i) => {
+            drawButton(c.label, 25, btnY + i * 36, W - 50, 30, c.action);
+        });
+    }
+
+    function drawButton(text, x, y, w, h, action) {
+        ctx.fillStyle = '#1a0533';
+        ctx.fillRect(x, y, w, h);
+        ctx.strokeStyle = '#9B30FF';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(x, y, w, h);
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(text, x + w/2, y + h/2 + 4);
+        ctx.textAlign = 'left';
+        buttons.push({ x, y, w, h, action });
+    }
+
+    function mainClick(e) {
+        if (currentGame !== 'dicktrail') return;
+        const rect = canvas.getBoundingClientRect();
+        const cx = (e.clientX - rect.left) * (W / rect.width);
+        const cy = (e.clientY - rect.top) * (H / rect.height);
+        for (const b of buttons) {
+            if (cx >= b.x && cx <= b.x + b.w && cy >= b.y && cy <= b.y + b.h) {
+                b.action();
+                return;
+            }
+        }
+    }
+    canvas.onclick = mainClick;
+
+    // ---- GAME FLOW ----
+    function showTravel() {
+        lines = [];
+        lines.push('>>The long, hard trail stretches before you...');
+        lines.push('');
+        state.screen = 'menu';
+        showMenu();
+    }
+
+    function showMenu() {
+        choices.length = 0;
+        choices.push({ label: '🍆 Press onward', action: doTravel });
+        choices.push({ label: '🛏️ Rest your weary members (+15 HP)', action: doRest });
+        choices.push({ label: '🌭 Hunt for sausages', action: startHuntMinigame });
+        if (state.money >= 30) choices.push({ label: '🛒 Buy supplies ($30 → 40 food)', action: doBuy });
+        choices.push({ label: `⚡ Change thrust [${state.pace}]`, action: changePace });
+        buttons.length = 0;
+        drawMenuScreen();
+    }
+
+    function doTravel() {
+        const paceMultiplier = state.pace === 'grueling' ? 1.6 : state.pace === 'steady' ? 1 : 0.6;
+        const dist = Math.floor((15 + Math.random() * 20) * paceMultiplier);
+
+        // Start travel animation, then resolve
+        animateTravel(dist, () => {
+            state.miles += dist;
+            state.day++;
+            state.food -= Math.floor(5 * state.party.length * (state.pace === 'grueling' ? 1.4 : state.pace === 'easy' ? 0.7 : 1));
+            if (state.pace === 'grueling') state.health -= Math.floor(Math.random() * 8);
+            if (state.pace === 'easy') state.health = Math.min(100, state.health + 2);
+
+            const travelMsgs = [
+                `You thrust forward ${dist} miles.`,
+                `You pushed hard for ${dist} miles.`,
+                `${dist} miles deeper into the wilderness.`,
+                `You penetrated ${dist} miles of uncharted territory.`,
+                `The party plowed ahead ${dist} miles.`,
+            ];
+            lines.push(travelMsgs[Math.floor(Math.random() * travelMsgs.length)]);
+
+            let pendingTombstone = null;
+
+            // Check landmark
+            for (const lm of landmarks) {
+                if (state.miles >= lm.mile && state.miles - dist < lm.mile) {
+                    lines.push('');
+                    lines.push(`$$*** ${lm.name.toUpperCase()} ***`);
+                    lines.push(lm.event);
+                    if (lm.name === 'Fort Throb') { state.food += 20; state.money -= 20; }
+                    if (lm.name === 'Ballsack Basin') { state.food += 30; }
+                }
+            }
+
+            // Random event (40% chance)
+            if (Math.random() < 0.4) {
+                const evt = randomEvents[Math.floor(Math.random() * randomEvents.length)];
+                let text = evt.text;
+                if (text.includes('{member}') && state.party.length > 0) {
+                    const m = state.party[Math.floor(Math.random() * state.party.length)];
+                    text = text.replace('{member}', m);
+                    if (evt.killChance && Math.random() < evt.killChance) {
+                        state.party = state.party.filter(p => p !== m);
+                        state.dead.push(m);
+                        pendingTombstone = m;
+                    }
+                }
+                lines.push('');
+                lines.push(text);
+                state.food += (evt.food || 0);
+                state.health += (evt.health || 0);
+                state.money += (evt.money || 0);
+            }
+
+            state.health = Math.min(100, state.health);
+            state.food = Math.max(0, state.food);
+            state.money = Math.max(0, state.money);
+
+            if (state.food <= 0) {
+                state.health -= 15;
+                lines.push('!!No food! Your party is shriveling up!');
+            }
+
+            function afterTombstone() {
+                // Check lose
+                if (state.health <= 0 || state.party.length === 0) {
+                    lines.push('');
+                    lines.push('!!================================');
+                    lines.push('!!   EVERYONE WENT LIMP.');
+                    lines.push(`!!   You only lasted ${state.miles} miles.`);
+                    lines.push('!!   Performance issues happen');
+                    lines.push('!!   to everyone, they say.');
+                    lines.push('!!================================');
+                    choices.length = 0;
+                    choices.push({ label: '💀 Try Again', action: startDickTrail });
+                    buttons.length = 0;
+                    drawMenuScreen();
+                    return;
+                }
+
+                // Check win
+                if (state.miles >= state.goal) {
+                    showVictory();
+                    return;
+                }
+
+                lines.push('');
+                showMenu();
+            }
+
+            if (pendingTombstone) {
+                showTombstone(pendingTombstone, afterTombstone);
+            } else {
+                afterTombstone();
+            }
+        });
+        travelAnimLoop();
+    }
+
+    function doRest() {
+        state.day++;
+        state.health = Math.min(100, state.health + 15);
+        state.food -= Math.floor(3 * state.party.length);
+        state.food = Math.max(0, state.food);
+        lines.push('Everyone rested and recharged. Feeling firm again.');
+        lines.push('');
+        showMenu();
+    }
+
+    function doBuy() {
+        state.money -= 30;
+        state.food += 40;
+        lines.push('Bought 40 sausages from a sketchy vendor. -$30.');
+        lines.push('');
+        showMenu();
+    }
+
+    function changePace() {
+        if (state.pace === 'steady') state.pace = 'grueling';
+        else if (state.pace === 'grueling') state.pace = 'easy';
+        else state.pace = 'steady';
+        lines.push(`Thrust set to: ${state.pace}`);
+        showMenu();
+    }
+
+    // ---- TITLE SCREEN ----
+    function drawTitle() {
+        animFrame++;
+        scrollX += 0.5;
+        drawScene();
+
+        // Dark overlay
+        ctx.fillStyle = 'rgba(0,0,0,0.7)';
+        ctx.fillRect(0, 0, W, H);
+
+        // Title
+        ctx.fillStyle = '#FF6F00';
+        ctx.font = 'bold 48px Fredoka One, sans-serif';
+        ctx.textAlign = 'center';
+        const wobble = Math.sin(animFrame * 0.05) * 3;
+        ctx.fillText('THE DICKTRAIL', W/2, 90 + wobble);
+
+        ctx.fillStyle = '#9B30FF';
+        ctx.font = '18px monospace';
+        ctx.fillText('A Long, Hard Journey', W/2, 125);
+
+        // Animated wagon on title
+        drawWagon(120 + (animFrame % 300), 260);
+
+        // Party
+        ctx.fillStyle = '#aaa';
+        ctx.font = '14px monospace';
+        ctx.fillText('Your party of dicks:', W/2, 310);
+        ctx.fillStyle = '#FFD700';
+        ctx.font = '13px monospace';
+        state.party.forEach((m, i) => {
+            ctx.fillText(`🍆 ${m}`, W/2, 335 + i * 20);
+        });
+
+        ctx.fillStyle = '#7BC74D';
+        ctx.font = '13px monospace';
+        ctx.fillText('Travel 2,000 long hard miles to the Glorious Hole', W/2, 430);
+        ctx.textAlign = 'left';
+
+        drawButton('EMBARK ON THE JOURNEY', W/2 - 120, 448, 240, 36, () => {
+            state.screen = 'menu';
+            showTravel();
+        });
+
+        if (state.screen === 'title') requestAnimationFrame(drawTitle);
+    }
+
+    // ---- INIT ----
+    buttons.length = 0;
+    drawTitle();
+}
+
+// ============ FART DODGE ============
+function startDodge() {
+    titleEl.textContent = '💨 FART DODGE';
+    instrEl.textContent = 'Arrow keys or WASD to dodge the clouds!';
+    let player = {x: 200, y: 350, w: 30, h: 30};
+    let clouds = [];
+    let score = 0;
+    let speed = 2;
+    let keys = {};
+
+    document.onkeydown = (e) => { keys[e.key.toLowerCase()] = true; e.preventDefault(); };
+    document.onkeyup = (e) => { keys[e.key.toLowerCase()] = false; };
+
+    function update() {
+        // Move player
+        if (keys['arrowleft'] || keys['a']) player.x -= 5;
+        if (keys['arrowright'] || keys['d']) player.x += 5;
+        if (keys['arrowup'] || keys['w']) player.y -= 5;
+        if (keys['arrowdown'] || keys['s']) player.y += 5;
+        player.x = Math.max(0, Math.min(canvas.width - player.w, player.x));
+        player.y = Math.max(0, Math.min(canvas.height - player.h, player.y));
+
+        // Spawn clouds
+        if (Math.random() < 0.04 + score * 0.001) {
+            clouds.push({x: Math.random() * (canvas.width - 30), y: -30, w: 30, h: 30, speed: speed + Math.random() * 2});
+        }
+
+        // Move clouds
+        clouds.forEach(c => c.y += c.speed);
+        clouds = clouds.filter(c => c.y < canvas.height + 40);
+
+        // Collision
+        for (let c of clouds) {
+            if (player.x < c.x + c.w && player.x + player.w > c.x && player.y < c.y + c.h && player.y + player.h > c.y) {
+                clearInterval(gameLoop);
+                scoreEl.textContent = 'GAME OVER! Survived: ' + score + ' — Click to restart';
+                canvas.onclick = () => { canvas.onclick = null; startDodge(); };
+                return;
+            }
+        }
+
+        score++;
+        if (score % 200 === 0) speed += 0.5;
+
+        // Draw
+        ctx.fillStyle = '#111';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = '28px serif';
+        clouds.forEach(c => ctx.fillText('💨', c.x, c.y + 24));
+        ctx.fillText('🦸', player.x, player.y + 24);
+        scoreEl.textContent = 'Score: ' + score;
+    }
+
+    if (gameLoop) clearInterval(gameLoop);
+    gameLoop = setInterval(update, 16);
+}
+
+// ============ DOMAINS GALLERY ============
+const SUPABASE_URL = 'https://pqnnwpymtxrczwcmnmel.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxbm53cHltdHhyY3p3Y21ubWVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzMTgwNjUsImV4cCI6MjA5MDg5NDA2NX0.j5h3o-doSUQ4Lkt1HH9VQ-IIhZbz4e-eoezNOW-yIaY';
+const API_BASE = '/api'; // Next.js API routes
+
+let allDomains = [];
+
+async function loadDomains() {
+    try {
+        // Fetch from Supabase (only available domains visible via RLS)
+        const res = await fetch(SUPABASE_URL + '/rest/v1/domains?status=eq.available&order=price.desc', {
+            headers: {
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            }
+        });
+        const data = await res.json();
+        // Group by base_name — show one card per brand with all TLDs
+        const groups = {};
+        data.forEach(d => {
+            const base = d.base_name || d.name;
+            if (!groups[base]) {
+                groups[base] = {
+                    id: d.id,
+                    base: base,
+                    tlds: [],
+                    variants: [],
+                    logo: d.logo_url || '',
+                    description: d.description || base,
+                    topPrice: 0,
+                };
+            }
+            groups[base].tlds.push(d.tld);
+            groups[base].variants.push({ id: d.id, tld: d.tld, price: d.price / 100 });
+            if (d.price > groups[base].topPrice) {
+                groups[base].topPrice = d.price;
+                groups[base].id = d.id;
+            }
+            if (d.logo_url && !groups[base].logo) groups[base].logo = d.logo_url;
+        });
+        allDomains = Object.values(groups).map(g => ({
+            id: g.id,
+            name: g.base + g.tlds[0],
+            base: g.base,
+            tlds: g.tlds,
+            variants: g.variants,
+            price: g.topPrice / 100,
+            logo: g.logo,
+            category: 'domain',
+            description: g.description,
+        }));
+    } catch (e) {
+        // Fallback to domains.json
+        try {
+            const res = await fetch('domains.json');
+            allDomains = await res.json();
+        } catch (e2) {
+            allDomains = [];
+        }
+    }
+    renderDomains('all');
+    initFilters();
+}
+
+function renderDomains(filter) {
+    const gallery = document.getElementById('domains-gallery');
+    const filtered = filter === 'all' ? allDomains : allDomains.filter(d => d.category === filter);
+
+    const displayList = filtered;
+    gallery.innerHTML = displayList.map((d, i) => {
+        const base = d.base || d.name.split('.')[0];
+        const tlds = d.tlds || ['.' + d.name.split('.').slice(1).join('.')];
+        const priceStr = 'from $' + d.price.toLocaleString();
+        const featured = d.price >= 4000;
+        const tldBadges = tlds.map(t => `<span class="tld-badge">${t}</span>`).join('');
+
+        return `
+        <div class="domain-card" data-idx="${i}" style="animation: fadeUp 0.4s ${i * 0.05}s both">
+            <div class="domain-card-logo">
+                <img src="${d.logo}" alt="${base} logo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="logo-placeholder" style="display:none">${base.toUpperCase()}</div>
+                ${featured ? '<div class="domain-card-badge">HOT</div>' : ''}
+            </div>
+            <div class="domain-card-body">
+                <div class="domain-card-name">${base}</div>
+                <div class="domain-tld-list">${tldBadges}</div>
+                <div class="domain-card-desc">${d.description}</div>
+                <div class="domain-card-footer">
+                    <div class="domain-card-price">${tlds.length > 1 ? priceStr : '$' + d.price.toLocaleString()}</div>
+                    <div class="domain-card-tag">${tlds.length > 1 ? tlds.length + ' TLDs' : tlds[0]}</div>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+
+    // Bind click handlers via data attribute instead of inline JSON
+    gallery.querySelectorAll('.domain-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const idx = parseInt(card.getAttribute('data-idx'));
+            openDomainModal(displayList[idx]);
+        });
+    });
+}
+
+function initFilters() {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderDomains(btn.dataset.filter);
+        });
+    });
+}
+
+function openDomainModal(domain) {
+    const modal = document.getElementById('domain-modal');
+    const base = domain.base || domain.name.split('.')[0];
+    const variants = domain.variants || [{ id: domain.id, tld: '.' + domain.name.split('.').slice(1).join('.'), price: domain.price }];
+
+    document.getElementById('modal-logo').innerHTML =
+        `<img src="${domain.logo}" alt="${base}"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+         <div class="logo-placeholder" style="display:none">${base.toUpperCase()}</div>`;
+    document.getElementById('modal-name').textContent = base;
+    document.getElementById('modal-desc').textContent = domain.description;
+    document.getElementById('modal-cat').textContent = variants.map(v => v.tld).join(' · ');
+
+    // Show per-TLD pricing with individual buy buttons
+    const actionsEl = document.querySelector('.domain-modal-actions');
+    if (variants.length > 1) {
+        document.getElementById('modal-price').textContent = '';
+        actionsEl.innerHTML = variants.map(v =>
+            `<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin-bottom:8px;">
+                <span style="font-family:'Fredoka One',cursive;color:#fff;font-size:1.1rem;">${base}<span style="color:var(--slime)">${v.tld}</span></span>
+                <span style="font-family:'Bungee',cursive;color:var(--sunny);font-size:1rem;">$${v.price.toLocaleString()}</span>
+                <button class="domain-modal-btn buy-btn" style="background:var(--slime);color:var(--dark-bg);padding:8px 16px;font-size:0.85rem;width:auto;" onclick="buyDomain('${v.id}', this)">BUY</button>
+            </div>`
+        ).join('') +
+        `<button class="domain-modal-btn inquire-btn" id="modal-inquire" style="width:100%;margin-top:8px;">MAKE AN OFFER</button>`;
+    } else {
+        document.getElementById('modal-price').textContent = '$' + domain.price.toLocaleString();
+        actionsEl.innerHTML =
+            `<button class="domain-modal-btn buy-btn" id="modal-buy" style="background:var(--slime);color:var(--dark-bg);">BUY NOW</button>
+             <button class="domain-modal-btn inquire-btn" id="modal-inquire">MAKE AN OFFER</button>`;
+
+        const buyBtn = document.getElementById('modal-buy');
+        if (buyBtn && domain.id) {
+            buyBtn.onclick = () => buyDomain(domain.id, buyBtn);
+        }
+    }
+
+    // INQUIRE via email (re-bind after innerHTML replacement)
+    const inquireBtn = document.getElementById('modal-inquire') || actionsEl.querySelector('.inquire-btn');
+    if (inquireBtn) {
+        inquireBtn.onclick = () => {
+            const label = base + (variants.length > 1 ? ' (' + variants.map(v => v.tld).join(', ') + ')' : variants[0].tld);
+            const subject = encodeURIComponent('Inquiry about ' + label);
+            const body = encodeURIComponent('Hi, I\'m interested in purchasing ' + label + '. Please let me know the details.');
+            window.location.href = 'mailto:domains@assboy.com?subject=' + subject + '&body=' + body;
+        };
+    }
+    modal.classList.add('active');
+}
+
+async function buyDomain(domainId) {
+    const res = await fetch(API_BASE + '/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ domainId }),
+    });
+    const data = await res.json();
+    if (data.url) window.location.href = data.url;
+}
+
+function closeDomainModal() {
+    document.getElementById('domain-modal').classList.remove('active');
+}
+
+// Close modal on escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDomainModal();
+});
+
+// Load domains on page load
+loadDomains();
+
+// ============ SUPABASE REALTIME ============
+(function initRealtime() {
+    const wsUrl = SUPABASE_URL.replace('https://', 'wss://') + '/realtime/v1/websocket?apikey=' + SUPABASE_ANON_KEY + '&vsn=1.0.0';
+    let ws, heartbeat;
+
+    function connect() {
+        ws = new WebSocket(wsUrl);
+
+        ws.onopen = () => {
+            // Join the realtime channel for domains table
+            ws.send(JSON.stringify({
+                topic: 'realtime:public:domains',
+                event: 'phx_join',
+                payload: {
+                    config: {
+                        broadcast: { self: false },
+                        postgres_changes: [
+                            { event: '*', schema: 'public', table: 'domains' }
+                        ]
+                    }
+                },
+                ref: '1'
+            }));
+
+            // Heartbeat every 30s to keep connection alive
+            heartbeat = setInterval(() => {
+                ws.send(JSON.stringify({ topic: 'phoenix', event: 'heartbeat', payload: {}, ref: 'hb' }));
+            }, 30000);
+        };
+
+        let reloadTimer = null;
+        ws.onmessage = (msg) => {
+            try {
+                const data = JSON.parse(msg.data);
+                if (data.event === 'postgres_changes') {
+                    // Debounce: wait 1s before refetching to batch rapid changes
+                    clearTimeout(reloadTimer);
+                    reloadTimer = setTimeout(loadDomains, 1000);
+                }
+            } catch(e) {}
+        };
+
+        ws.onclose = () => {
+            clearInterval(heartbeat);
+            // Reconnect after 3s
+            setTimeout(connect, 3000);
+        };
+
+        ws.onerror = () => ws.close();
+    }
+
+    connect();
+})();
+</script>
+
+</body>
+</html>
